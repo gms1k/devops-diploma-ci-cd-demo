@@ -1,12 +1,22 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request # Додав Request
 from pydantic import BaseModel
 from typing import List, Optional
+
+from fastapi.responses import HTMLResponse # Додав цей імпорт
+from fastapi.templating import Jinja2Templates # Додав цей імпорт
+# from fastapi.staticfiles import StaticFiles # Цей рядок розкоментуєш, якщо будеш додавати окремий CSS/JS файл
 
 app = FastAPI(
     title="DevOps Pipeline Demo API",
     description="A simple FastAPI application to demonstrate a DevOps CI/CD pipeline.",
     version="1.0.0"
 )
+
+# Ініціалізація Jinja2Templates. Вказуємо шлях до папки з шаблонами.
+templates = Jinja2Templates(directory="templates")
+
+# Якщо будеш використовувати статичні файли (CSS/JS/зображення), розкоментуй і налаштуй цей рядок:
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Модель даних для елемента (Product)
 class Item(BaseModel):
@@ -37,12 +47,20 @@ items_db: List[Item] = [
     Item(id=3, name="Smartwatch 5", description="Fitness tracker and smartwatch", price=299.99, tax=20.0),
 ]
 
-@app.get("/", tags=["Root"])
-async def read_root():
+@app.get("/", response_class=HTMLResponse, tags=["Root"]) # Додав response_class=HTMLResponse
+async def read_root(request: Request): # Додав request: Request
     """
-    Головний маршрут, повертає вітальне повідомлення.
+    Головний маршрут, повертає вітальну HTML-сторінку.
     """
-    return {"message": "Hello from FastAPI! This is your DevOps Pipeline."}
+    context = {
+        "request": request,
+        "title": "Мій DevOps-проект з FastAPI",
+        "content": "Ласкаво просимо на демо-сторінку мого DevOps CI/CD конвеєра!",
+        "author": "Кріпченко Богдан",  
+        "year": 2025  
+    }
+    return templates.TemplateResponse("index.html", context)
+
 
 @app.get("/items", response_model=List[Item], tags=["Items"])
 async def get_items():

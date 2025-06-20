@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        p {
+            font-size: 1.1em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Щоб контейнер займав лише потрібне місце */
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p>{{ content }}</p>
+        <p>Ця сторінка розгорнута за допомогою DevOps CI/CD!</p>
+        <p>Створено: {{ author }}</p>
+    </div>
+    <footer>
+        <p>&copy; {{ year }} | Демо FastAPI + Render</p>
+    </footer>
+</body>
+</html>
