@@ -1,0 +1,29 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ] # Запускати конвеєр, коли відбуваються push-зміни в гілку main
+  pull_request:
+    branches: [ main ] # Запускати конвеєр, коли створюється або оновлюється Pull Request до гілки main
+
+jobs:
+  build-test: # Визначаємо одне завдання (job) для нашого конвеєра, назване 'build-test'
+    runs-on: ubuntu-latest # Вказуємо, що це завдання буде виконуватися на віртуальній машині з останньою версією Ubuntu
+
+    steps: # Послідовність кроків, які будуть виконуватися в рамках завдання 'build-test'
+    - name: Checkout repository # Крок 1: Завантажити вихідний код з репозиторію на віртуальну машину
+      uses: actions/checkout@v4 # Використовуємо офіційний action від GitHub для цієї мети
+
+    - name: Set up Python # Крок 2: Налаштувати середовище Python на віртуальній машині
+      uses: actions/setup-python@v5 # Використовуємо офіційний action для встановлення Python
+      with:
+        python-version: '3.11' # Вказуємо конкретну версію Python для використання. Рекомендую 3.11 для більшої стабільності з бібліотеками.
+
+    - name: Install dependencies # Крок 3: Встановити всі залежності з requirements.txt (це і є частина "Збирання")
+      run: | # Виконуємо послідовність команд оболонки (shell commands)
+        python -m pip install --upgrade pip # Оновлюємо менеджер пакетів pip
+        pip install -r requirements.txt # Встановлюємо всі бібліотеки, перелічені в requirements.txt
+
+    - name: Run tests # Крок 4: Запустити наші автоматичні тести (це і є "Тестування")
+      run: |
+        pytest # Виконуємо команду pytest, яка знайде і запустить всі файли test_*.py
