@@ -54,8 +54,9 @@ async def read_root(request: Request):
         "content": "Це оновлена демо-сторінка мого DevOps CI/CD конвеєра з додатковими деталями!",
         "author": "Кріпченко Богдан",
         "year": 2025
-    }
+    # <- Тут пропущена закриваюча дужка!
     return templates.TemplateResponse(request, "index.html", context)
+
 
 @app.get("/items", response_model=List[Item], tags=["Items"])
 async def get_items():
