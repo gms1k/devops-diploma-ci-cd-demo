@@ -15,15 +15,30 @@
         h1 {
             color: #0056b3;
         }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
         p {
             font-size: 1.1em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #0056b3;
+            color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
         }
         .container {
             background-color: #fff;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: inline-block; /* Щоб контейнер займав лише потрібне місце */
+            display: inline-block;
         }
         footer {
             margin-top: 50px;
@@ -35,12 +50,18 @@
 <body>
     <div class="container">
         <h1>{{ title }}</h1>
+        <h2>Додаткові деталі</h2>
         <p>{{ content }}</p>
-         <p>Ця сторінка розгорнута за допомогою DevOps CI/CD!</p>
+        <p>Ця сторінка розгорнута за допомогою DevOps CI/CD!</p>
+        <ul>
+            <li>Автоматичне тестування</li>
+            <li>Автоматичний деплой</li>
+            <li>Сучасний стек: FastAPI + GitHub Actions + Render</li>
+        </ul>
         <p>Створено: {{ author }}</p>
     </div>
     <footer>
-        <p>&copy; {{ year }} | Демо</p>
+        <p>&copy; {{ year }} | Демо FastAPI + Render</p>
     </footer>
 </body>
 </html>
