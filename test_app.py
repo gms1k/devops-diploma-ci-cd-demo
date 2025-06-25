@@ -7,8 +7,8 @@ def test_read_root_html():
     response = client.get("/")
     assert response.status_code == 200
     assert "text/html" in response.headers["content-type"]
-    assert "Мій фінальний DevOps-проект з FastAPI" in response.text
-    assert "фінальна демо-сторінка" in response.text
+    assert "Мій оновлений DevOps-проект з FastAPI" in response.text
+    assert "оновлена демо-сторінка" in response.text
     assert "Додаткові деталі" in response.text
     assert "Автоматичне тестування" in response.text
     assert "Автоматичний деплой" in response.text
