@@ -51,7 +51,7 @@ async def read_root(request: Request):
     context = {
         "request": request,
         "title": "Мій фінальний DevOps-проект з FastAPI",
-        "content": "Це оновлена демо-сторінка мого DevOps CI/CD конвеєра з додатковими деталями!",
+        "content": "Це фінальна демо-сторінка мого DevOps CI/CD конвеєра з додатковими деталями!",
         "author": "Кріпченко Богдан",
         "year": 2025
     }
