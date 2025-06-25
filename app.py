@@ -54,6 +54,7 @@ async def read_root(request: Request):
         "content": "Це фінальна демо-сторінка мого DevOps CI/CD конвеєра з додатковими деталями!",
         "author": "Кріпченком Богданом",
         "year": 2025
+    }
     return templates.TemplateResponse(request, "index.html", context)
 
 
