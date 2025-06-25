@@ -53,7 +53,7 @@ async def read_root(request: Request):
         "title": "Мій оновлений DevOps-проект з FastAPI",
         "content": "Це оновлена демо-сторінка мого DevOps CI/CD конвеєра з додатковими деталями!",
         "author": "Кріпченко Богдан",
-        "year": 2025
+        "year": 2025}
     # <- Тут пропущена закриваюча дужка!
     return templates.TemplateResponse(request, "index.html", context)
 
